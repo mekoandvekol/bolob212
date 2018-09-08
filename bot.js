@@ -276,7 +276,13 @@ if (message.content.startsWith("L-cv")) {
 
 
 
-
+client.on('message', message => {
+    if (message.content.startsWith("L-bans")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
+  .catch(console.error);
+}
+});
 
 
 client.login(process.env.BOT_TOKEN);
